@@ -1,0 +1,91 @@
+<% content_for :title, "Texas A&M | Caption Generator" %>
+
+<% content_for :head do %>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+<% end %>
+
+<div class="landing-page">
+  <header class="hero">
+    <nav class="hero__nav">
+      <div class="brand">
+        <span class="brand__mark">Texas A&amp;M</span>
+        <span class="brand__project">Context-Based Caption Generator</span>
+      </div>
+      <div class="nav__actions">
+        <a class="nav__link" href="https://www.tamu.edu/index.html" target="_blank" rel="noopener">Visit TAMU</a>
+        <%= button_to "/auth/google_oauth2",
+          method: :post,
+          class: "nav__link-cta",
+          form: { class: "nav__cta-form", data: { turbo: false } } do %>
+          Sign in
+        <% end %>
+      </div>
+    </nav>
+
+    <div class="hero__grid">
+      <div class="hero__content">
+        <p class="eyebrow">Sign in to continue</p>
+        <h1>
+          Generate contextual captions from your slide deck.
+        </h1>
+        <p class="lead">
+          Upload a PPTX, run analysis, and download a DOCX report.
+        </p>
+
+        <div class="hero__actions">
+          <%= button_to "/auth/google_oauth2",
+            method: :post,
+            class: "sso-button",
+            aria: { label: "Continue with Google single sign-on" },
+            form: { class: "sso-form", data: { turbo: false } } do %>
+            <svg class="google-logo" viewBox="0 0 46 46" aria-hidden="true">
+              <g fill="none" fill-rule="evenodd">
+                <path d="M23 9.2c3.1 0 5.2 1.3 6.4 2.4l4.7-4.6C31.5 3.5 27.6 2 23 2 14.8 2 7.8 7 4.8 14.1l5.9 4.6C12 13.5 17.1 9.2 23 9.2z" fill="#EA4335"/>
+                <path d="M43.6 24.5c0-1.6-.1-2.7-.4-3.9H23v7.3h11.9c-.2 1.8-1.4 4.4-4 6.2l6.2 4.8c3.7-3.5 6.5-8.5 6.5-14.4z" fill="#4285F4"/>
+                <path d="M10.7 27.3a13.8 13.8 0 0 1 0-8.6l-5.9-4.6A21 21 0 0 0 2 23c0 3.4.8 6.7 2.8 8.8l5.9-4.5z" fill="#FBBC05"/>
+                <path d="M23 44c5.8 0 10.7-1.9 14.2-5.3l-6.2-4.8c-2.3 1.6-5.3 2.6-8 2.6-6 0-11-4.2-12.8-9.9l-5.9 4.5C7.1 39 14.3 44 23 44z" fill="#34A853"/>
+              </g>
+            </svg>
+            <span>Continue with Google</span>
+          <% end %>
+          <p class="secure-note">Use your authorized Google account.</p>
+        </div>
+      </div>
+
+      <div class="hero__card">
+        <p class="card__eyebrow">How it works</p>
+        <h2>Quick steps</h2>
+        <ul>
+          <li>Upload your PPTX file</li>
+          <li>Generate caption analysis</li>
+          <li>Download the DOCX report</li>
+        </ul>
+        <div class="card__footer">
+          <span class="pulse"></span>
+          <span>Secure sign-in with Google OAuth</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="feature-grid">
+    <article>
+      <h3>Simple workflow</h3>
+      <p>Upload slides, review generated captions, and export results.</p>
+    </article>
+    <article>
+      <h3>Context-based output</h3>
+      <p>Captions are generated using both visual and slide context.</p>
+    </article>
+    <article>
+      <h3>Secure access</h3>
+      <p>Authentication is handled through Google OAuth 2.0.</p>
+    </article>
+  </section>
+
+  <footer class="site-footer">
+    <p>Texas A&amp;M Context-Based Caption Generator</p>
+  </footer>
+</div>

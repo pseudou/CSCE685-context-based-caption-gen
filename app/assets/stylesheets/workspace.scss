@@ -1,0 +1,40 @@
+html, body {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.workspace {
+  width: 100vw;
+  max-width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+.workspace__body {
+  width: 100vw;            /* Ensure truly full viewport width */
+  padding: 0;              /* Remove side padding */
+  box-sizing: border-box;
+}
+
+.upload-panel {
+  width: 100vw;            /* Full viewport width */
+  max-width: 100vw;        /* Remove max-width limit */
+  margin: 0;               /* Remove centering */
+  box-sizing: border-box;
+}
+
+.upload-panel__form,
+.upload-dropzone {
+  width: 100vw;           /* Stretch entire form/dropzone */
+  box-sizing: border-box;
+}
+
+.upload-dropzone {
+  padding: 2rem;
+  display: block;
+  /* Optional: add border/background for visual impact */
+  border: 2px dashed #aaa;
+  background: #fafafb;
+}

@@ -1,0 +1,79 @@
+<% content_for :title, "Aggie Intelligence Workspace" %>
+
+<div class="workspace">
+  <header class="workspace__hero">
+    <div>
+      <p class="workspace__eyebrow">Secure Aggie access channel</p>
+      <h1>Howdy, <%= @current_user.first_name %>!</h1>
+      <p class="workspace__lead">
+        You&apos;re now inside the Context-Based Caption Generator. Upload your presentation and we&apos;ll dissect
+        every embedded image to surface the subjects, tone, and context powering Aggie storytelling.
+      </p>
+      <dl class="identity">
+        <div>
+          <dt>Name</dt>
+          <dd><%= @current_user.first_name %> <%= @current_user.last_name %></dd>
+        </div>
+        <div>
+          <dt>Email</dt>
+          <dd><%= @current_user.email %></dd>
+        </div>
+        <%= link_to "Logout", logout_path, class: "ghost-button" %>
+      </dl>
+    </div>
+
+  </header>
+
+  <section class="workspace__body">
+    <div class="upload-panel">
+      <div>
+        <p class="workspace__eyebrow">Context-based upload</p>
+        <h3>Share your PPT deck</h3>
+        <p>We&apos;ll isolate each slide&apos;s imagery, run contextual vision models, and generate caption prompts poised for editing.</p>
+      </div>
+
+      <%= form_with url: workspace_upload_path, method: :post,
+        html: { class: "upload-panel__form", multipart: true } do |form| %>
+        <div class="upload-dropzone" data-controller="upload">
+          <div class="badge">PPTX</div>
+          <p>Drag &amp; drop or click to upload</p>
+          <p class="hint">Accepted: .pptx (up to 50 slides)</p>
+          <p class="selected-file" data-upload-target="filename" aria-live="polite"></p>
+          <%= form.file_field :deck,
+            accept: ".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation",
+            data: { upload_target: "input", action: "change->upload#fileSelected" } %>
+        </div>
+        <div class="upload-actions">
+          <%= form.submit "Launch analysis", class: "sso-button upload-button" %>
+          <p class="upload-note">Note: Decks must be .pptx format and contain 50 slides or fewer.</p>
+        </div>
+      <% end %>
+    </div>
+
+
+    <% if @analysis_results.present? %>
+      <div class="analysis-results">
+        <p class="workspace__eyebrow">LLM agent output</p>
+        <h3>Context-based slide titles</h3>
+        <ul class="analysis-results__list">
+          <% @analysis_results.each do |result| %>
+            <li>
+              <span class="badge">Slide <%= result[:slide_number] %></span>
+              <div>
+                <p class="analysis-title"><%= result[:title] %></p>
+                <p class="analysis-meta"><%= result[:image_name] %></p>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+
+        <% if @analysis_report_ready %>
+          <div class="report-download">
+            <p class="workspace__eyebrow">Download full analysis</p>
+            <%= link_to(@analysis_report_filename || 'Download analysis DOCX', workspace_download_analysis_report_path, class: 'sso-button') %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+</div>
