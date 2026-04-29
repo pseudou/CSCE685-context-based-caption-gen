@@ -16,7 +16,7 @@ When you’re working with large slide decks, it’s easy to lose consistent nar
 
 ## Demo
 
-- Demo video
+- [Demo video](https://drive.google.com/file/d/14lzmb8Q8ZiQhROS9ltQjyzh9bDkJmtJY/view?usp=sharing)
 
 ## Architecture
 

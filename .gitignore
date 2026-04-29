@@ -66,11 +66,6 @@
 .byebug_history
 .ruby-gemset
 
-### Docs / generated binaries
-*.pptx
-*.ppt
-*.docx
-
 ### Node (not currently used, but safe to ignore if added later)
 /node_modules/
 /yarn-error.log
